@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -31,6 +34,61 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login', ['logout_message' => 'Logout สำเร็จ']);
+        return redirect()->route('login')->withErrors(['logout' => 'logetedout',]);
+    }
+
+    public function resetPass(Request $request)
+    {
+        switch ($request->method()) {
+            case 'POST':
+                $password = $request->input('password');
+                $new1 = $request->input('newpassword1');
+                $new2 = $request->input('newpassword2');
+                if ($new1 == $new2) {
+                    if (Hash::check($password, Auth::user()->password)) {
+                        $request->user()->fill([
+                            'password' => Hash::make($new1)
+                        ])->save();
+                        return back()->withErrors([
+                            'success' => 'reset',
+                        ]);
+                    } else {
+                        return back()->withErrors([
+                            'password' => 'reset err',
+                        ]);
+                    }
+                } else {
+                    return back()->withErrors([
+                        'password' => 'reset err',
+                    ]);
+                }
+
+            case 'GET':
+                return view('user');
+
+            default:
+                // invalid request
+                return back();
+        }
+    }
+
+    public function addAdmin(Request $request) {
+        switch ($request->method()) {
+            case 'POST':
+                
+                
+
+            case 'GET':
+                return view('user');
+
+            default:
+                // invalid request
+                return back();
+        }
+    }
+
+    public function admins(Request $request) {
+        $users = DB::select('select id, name, email from users');
+        return view('admins', ['users' => $users]);
     }
 }

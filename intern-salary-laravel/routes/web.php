@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,11 @@ Route::post('/login', [UserController::class, 'auth']);
 // login middleware
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
-
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/user', [UserController::class, 'resetPass']);
+    Route::post('/user', [UserController::class, 'resetPass']);
+    Route::get('/admins', [UserController::class, 'admins']);
+    Route::post('/admins', [UserController::class, 'admins']);
+    Route::get('/add-admin', [UserController::class, 'addAdmin']);
+    Route::post('/add-admin', [UserController::class, 'addAdmin']);
+    Route::get('/', [HomeController::class, 'dashboard']);
 });

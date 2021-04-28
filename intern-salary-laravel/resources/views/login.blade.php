@@ -34,10 +34,10 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <div class="page-inner bg-brand-gradient">
             <div class="page-content-wrapper bg-transparent m-0">
                 <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
-                    <div class="d-flex align-items-center container p-0">
+                    <div class="d-flex justify-content-center align-items-center container p-0">
                         <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
                             <a href="/" class="page-logo-link press-scale-down d-flex align-items-center">
-                                <span class="page-logo-text mr-1">ระบบจัดการนักศึกษาฝึกงาน</span>
+                                <span class="text-center page-logo-text mr-1">ระบบจัดการนักศึกษาฝึกงาน</span>
                             </a>
                         </div>
                     </div>
@@ -54,11 +54,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
-                                @if( request()->get('logout_message') )
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>{{ request()->get('logout_message') }}</strong>
+                                @error('logout')
+                                <div class="alert alert-success" role="alert">
+                                    <strong>Logout สำเร็จ</strong>
                                 </div>
-                                @endif
+                                @enderror
                                 <form id="js-login" novalidate="" action="/login" method="POST">
                                     @csrf
                                     <div class="form-group">

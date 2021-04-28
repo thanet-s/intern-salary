@@ -12,7 +12,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <head>
     <meta charset="utf-8">
     <title>
-        นักศึกษาทั้งหมด - {{ config('app.name') }}
+        แอดมิน - {{ config('app.name') }}
     </title>
     <meta name="description" content="Login">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -219,7 +219,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     </ol>
                     <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i> นักศึกษาทั้งหมด
+                            <i class='subheader-icon fal fa-chart-area'></i> แอดมิน
                             <small>
                             </small>
                         </h1>
@@ -229,7 +229,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                             <div id="panel-4" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        นักศึกษา <span class="fw-300"><i>ทั้งหมด</i></span>
+                                        แอดมิน
                                     </h2>
                                 </div>
                                 <div class="panel-container show">
@@ -237,189 +237,29 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                         <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                             <thead class="bg-warning-200">
                                                 <tr>
-                                                    <th>CustomerID</th>
+                                                    <th>UserID</th>
                                                     <th>Name</th>
-                                                    <th>PurchaseDate</th>
-                                                    <th>CustomerEmail</th>
-                                                    <th>CustomerCVV</th>
-                                                    <th>Country</th>
-                                                    <th>InvoiceAmount</th>
+                                                    <th>Email</th>
                                                     <th>Controls</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                    <th>CustomerID</th>
+                                                    <th>UserID</th>
                                                     <th>Name</th>
-                                                    <th>PurchaseDate</th>
-                                                    <th>CustomerEmail</th>
-                                                    <th>CustomerCVV</th>
-                                                    <th>Country</th>
-                                                    <th>InvoiceAmount</th>
+                                                    <th>Email</th>
                                                     <th>Controls</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
+                                                @foreach ($users as $user)
                                                 <tr>
-                                                    <td>268410636</td>
-                                                    <td>Cooley, Walker J.</td>
-                                                    <td>03-13-19</td>
-                                                    <td>odio.auctor@orcilobortis.edu</td>
-                                                    <td>717</td>
-                                                    <td>Timor-Leste</td>
-                                                    <td>$7,007</td>
+                                                    <td>{{ $user->id }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->email }}</td>
                                                     <td>1</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>077610947</td>
-                                                    <td>Wise, Ruby R.</td>
-                                                    <td>04-10-19</td>
-                                                    <td>mi.Aliquam@afeugiat.edu</td>
-                                                    <td>715</td>
-                                                    <td>Burkina Faso</td>
-                                                    <td>$7,052</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>025865486</td>
-                                                    <td>Rasmussen, Piper C.</td>
-                                                    <td>01-18-19</td>
-                                                    <td>blandit@molestiesodales.com</td>
-                                                    <td>496</td>
-                                                    <td>Slovakia</td>
-                                                    <td>$8,843</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>602908154</td>
-                                                    <td>Kinney, Laurel N.</td>
-                                                    <td>01-27-20</td>
-                                                    <td>neque.Nullam@penatibuset.org</td>
-                                                    <td>718</td>
-                                                    <td>Norfolk Island</td>
-                                                    <td>$8,374</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>103910519</td>
-                                                    <td>Hess, Oren I.</td>
-                                                    <td>10-29-19</td>
-                                                    <td>tincidunt.pede.ac@tellusNunclectus.edu</td>
-                                                    <td>804</td>
-                                                    <td>Mauritius</td>
-                                                    <td>$5,009</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>053136990</td>
-                                                    <td>Baldwin, Beau W.</td>
-                                                    <td>03-20-19</td>
-                                                    <td>a.felis@nisiaodio.org</td>
-                                                    <td>133</td>
-                                                    <td>Saint Lucia</td>
-                                                    <td>$8,786</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>554906412</td>
-                                                    <td>Herrera, Lila R.</td>
-                                                    <td>01-10-19</td>
-                                                    <td>habitant.morbi.tristique@aptent.edu</td>
-                                                    <td>441</td>
-                                                    <td>Malawi</td>
-                                                    <td>$7,422</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>813289717</td>
-                                                    <td>Rowland, Jameson U.</td>
-                                                    <td>10-19-19</td>
-                                                    <td>est.vitae@molestieorcitincidunt.com</td>
-                                                    <td>224</td>
-                                                    <td>Bouvet Island</td>
-                                                    <td>$7,380</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>552262891</td>
-                                                    <td>Burks, Tanya X.</td>
-                                                    <td>03-26-19</td>
-                                                    <td>nunc.risus@leo.co.uk</td>
-                                                    <td>168</td>
-                                                    <td>Australia</td>
-                                                    <td>$9,070</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>925675126</td>
-                                                    <td>Santana, Knox B.</td>
-                                                    <td>06-05-20</td>
-                                                    <td>at.libero@molestie.org</td>
-                                                    <td>288</td>
-                                                    <td>Armenia</td>
-                                                    <td>$7,205</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>042657015</td>
-                                                    <td>Russell, Ima J.</td>
-                                                    <td>10-06-18</td>
-                                                    <td>egestas.lacinia.Sed@risusDonec.com</td>
-                                                    <td>588</td>
-                                                    <td>New Caledonia</td>
-                                                    <td>$7,272</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>379067929</td>
-                                                    <td>Knowles, Chanda J.</td>
-                                                    <td>09-06-18</td>
-                                                    <td>tristique@antedictum.co.uk</td>
-                                                    <td>747</td>
-                                                    <td>Lebanon</td>
-                                                    <td>$8,249</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>322274499</td>
-                                                    <td>Mcclain, Bree J.</td>
-                                                    <td>03-12-20</td>
-                                                    <td>ante@nislelementumpurus.org</td>
-                                                    <td>224</td>
-                                                    <td>Korea, South</td>
-                                                    <td>$5,587</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>404718686</td>
-                                                    <td>Bailey, Lani X.</td>
-                                                    <td>08-07-19</td>
-                                                    <td>Proin@massaMauris.ca</td>
-                                                    <td>761</td>
-                                                    <td>Australia</td>
-                                                    <td>$6,092</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>359926938</td>
-                                                    <td>Sloan, Keefe I.</td>
-                                                    <td>10-14-18</td>
-                                                    <td>Nullam@utaliquamiaculis.org</td>
-                                                    <td>806</td>
-                                                    <td>South Georgia and The South Sandwich Islands</td>
-                                                    <td>$5,003</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>369436084</td>
-                                                    <td>Stephenson, Lilah J.</td>
-                                                    <td>07-13-19</td>
-                                                    <td>nisl@metus.com</td>
-                                                    <td>394</td>
-                                                    <td>Zambia</td>
-                                                    <td>$6,766</td>
-                                                    <td>1</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -469,7 +309,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
             /* init datatables */
             $('#dt-basic-example').dataTable({
-                order: [[ 0, "desc" ]],
+                order: [
+                    [0, "desc"]
+                ],
                 pageLength: 20,
                 responsive: true,
                 dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
@@ -524,7 +366,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                             ES5 example below:	
 
                             */
-                            return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                            return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t";
                         },
                     },
 
