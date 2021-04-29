@@ -81,7 +81,7 @@
             <!-- BEGIN Left Aside -->
             <aside class="page-sidebar">
                 <div class="page-logo">
-                    <a href="/" class="page-logo-link press-scale-down d-flex align-items-center position-relative" style="justify-content: center;">
+                    <a href="/dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative" style="justify-content: center;">
                         <img src="img/logo.png" alt="logo" aria-roledescription="logo" height="50px" width="50px">
                     </a>
                 </div>
@@ -90,7 +90,7 @@
                     <ul id="js-nav-menu" class="nav-menu">
                         <li class="nav-title">Navigation</li>
                         <li>
-                            <a href="/">
+                            <a href="/dashboard">
                                 <i class="fal fa-window"></i>
                                 <span class="nav-link-text">นักศึกษา</span>
                             </a>
@@ -114,7 +114,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admins">
+                            <a href="/department">
+                                <i class="fal fa-users"></i>
+                                <span class="nav-link-text">จัดการแผนก</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admins">
                                 <i class="fal fa-user-secret"></i>
                                 <span class="nav-link-text">จัดการแอดมิน</span>
                             </a>
@@ -167,7 +173,7 @@
                         </a>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a href="/">
+                        <a href="/dashboard">
                             <h3 class="text-secondary hidden-xs-down" style="margin-top: auto; margin-bottom: auto;">ระบบบริหารการจัดการนักศึกษาฝึกงานของบริษัท ยูนิมิต เอนจิเนียริ่ง จำกัด(มหาชน)</h3>
                         </a>
                     </div>

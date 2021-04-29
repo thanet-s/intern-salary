@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\InternController;
+use App\Http\Controllers\DepartmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,5 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admins', [UserController::class, 'removeAdmin']);
     Route::get('/add-admin', [UserController::class, 'addAdmin']);
     Route::post('/add-admin', [UserController::class, 'addAdmin']);
-    Route::get('/', [HomeController::class, 'dashboard']);
+    Route::get('/add-student', [InternController::class, 'form']);
+    Route::post('/add-student', [InternController::class, 'add']);
+    Route::get('/department', [DepartmentController::class, 'departmentList']);
+    Route::post('/remove-department', [DepartmentController::class, 'removeDepartment']);
+    Route::post('/add-department', [DepartmentController::class, 'addDepartment']);
+    Route::post('/edit-department', [DepartmentController::class, 'editDepartment']);
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 });
