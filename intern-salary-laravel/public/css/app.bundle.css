@@ -842,9 +842,9 @@ html body {
   flex-shrink: 0;
   min-height: 1px;
   padding: 0 2rem; }
-  .page-logo img {
+  /* .page-logo img {
     width: auto;
-    height: auto; }
+    height: auto; } */
   .page-logo .page-logo-link {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 auto;

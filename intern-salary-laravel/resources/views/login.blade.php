@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<!-- 
-Template Name:  SmartAdmin Responsive WebApp - Template build with Twitter Bootstrap 4
-Version: 4.0.0
-Author: Sunnyat Ahmmed
-Website: http://gootbootstrap.com
-Purchase: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0
-License: You must have a valid license purchased only from wrapbootstrap.com (link above) in order to legally use this theme for your project.
--->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <title>
-        Login - {{ config('app.name') }}
+        ระบบบริหารการจัดการนักศึกษาฝึกงานของบริษัท ยูนิมิต เอนจิเนียริ่ง จำกัด(มหาชน)
     </title>
     <meta name="description" content="Login">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,9 +27,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             <div class="page-content-wrapper bg-transparent m-0">
                 <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
                     <div class="d-flex justify-content-center align-items-center container p-0">
-                        <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+                        <div style="width:auto;" class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
                             <a href="/" class="page-logo-link press-scale-down d-flex align-items-center">
-                                <span class="text-center page-logo-text mr-1">ระบบจัดการนักศึกษาฝึกงาน</span>
+                                <span class="text-center page-logo-text mr-1">ระบบบริหารการจัดการนักศึกษาฝึกงานของบริษัท ยูนิมิต เอนจิเนียริ่ง จำกัด(มหาชน)</span>
                             </a>
                         </div>
                     </div>
@@ -81,7 +73,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         </div>
                     </div>
                     <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
-                        2019 © CopyRight
+                        2021 © CopyRight
                     </div>
                 </div>
             </div>

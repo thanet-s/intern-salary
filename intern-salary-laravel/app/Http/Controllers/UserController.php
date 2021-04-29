@@ -72,14 +72,36 @@ class UserController extends Controller
         }
     }
 
-    public function addAdmin(Request $request) {
+    public function addAdmin(Request $request)
+    {
         switch ($request->method()) {
             case 'POST':
-                
-                
+                $name = $request->input('name');
+                $email = $request->input('email');
+                $pass1 = $request->input('password1');
+                $pass2 = $request->input('password2');
+                $emails = DB::select('select email from users');
+
+                foreach ($emails as $em) {
+                    if ($em->email == $email) {
+                        return back()->withErrors(['email' => 'email does exists']);
+                    }
+                }
+
+                if ($pass1 != $pass2) {
+                    return back()->withErrors(['pass' => 'password not match']);
+                }
+
+                $user = new User();
+                $user->name = $name;
+                $user->password = Hash::make($pass1);
+                $user->email = $email;
+                $user->save();
+                return redirect()->route('admins')->withErrors(['addsuccess' => 'ok',]);
+
 
             case 'GET':
-                return view('user');
+                return view('addadmin');
 
             default:
                 // invalid request
@@ -87,8 +109,23 @@ class UserController extends Controller
         }
     }
 
-    public function admins(Request $request) {
+    public function admins(Request $request)
+    {
         $users = DB::select('select id, name, email from users');
         return view('admins', ['users' => $users]);
+    }
+
+    public function removeAdmin(Request $request)
+    {
+        $name = $request->input('name');
+        $id = $request->input('id');
+        $authId = Auth::user()->id;
+        if ($id == $authId) {
+            return back()->withErrors(['selfremove' => "ไม่สามารถลบตัวเองได้"]);
+        }
+
+        $deleted = DB::delete("delete from users where id = $id");
+
+        return back()->withErrors(['remove' => "ลบ $name แล้ว"]);
     }
 }

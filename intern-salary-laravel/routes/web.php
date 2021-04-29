@@ -24,8 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/user', [UserController::class, 'resetPass']);
     Route::post('/user', [UserController::class, 'resetPass']);
-    Route::get('/admins', [UserController::class, 'admins']);
-    Route::post('/admins', [UserController::class, 'admins']);
+    Route::get('/admins', [UserController::class, 'admins'])->name('admins');
+    Route::post('/admins', [UserController::class, 'removeAdmin']);
     Route::get('/add-admin', [UserController::class, 'addAdmin']);
     Route::post('/add-admin', [UserController::class, 'addAdmin']);
     Route::get('/', [HomeController::class, 'dashboard']);
