@@ -34,7 +34,7 @@ class CalController extends Controller
             $data = DB::select("
             SELECT y.id, y.name, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(x.checkout, x.checkin)))), \"%H:%i\") AS time, ( SUM(TIME_TO_SEC(TIMEDIFF(x.checkout, x.checkin))) / 60 / 60) * (y.earning / 8) AS salary
             FROM work_record AS x, interner AS y
-            WHERE YEAR(x.date) = $year AND MONTH(x.date) = $month AND DAY(x.date) < 16 AND x.interner = y.id
+            WHERE YEAR(x.date) = $year AND MONTH(x.date) = $month AND DAY(x.date) < 16 AND x.interner = y.id AND isLeave = false
             GROUP BY x.interner
             ");
             return view('salary',['title' => "ค่าเบี้ยเลี้ยงนักศึกษาฝึกงาน ต้นเดือน $month-$year", 'data' => $data]);
@@ -42,7 +42,7 @@ class CalController extends Controller
             $data = DB::select("
             SELECT y.id, y.name, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(x.checkout, x.checkin)))), \"%H:%i\") AS time, ( SUM(TIME_TO_SEC(TIMEDIFF(x.checkout, x.checkin))) / 60 / 60) * (y.earning / 8) AS salary
             FROM work_record AS x, interner AS y
-            WHERE YEAR(x.date) = $year AND MONTH(x.date) = $month AND DAY(x.date) > 15 AND x.interner = y.id
+            WHERE YEAR(x.date) = $year AND MONTH(x.date) = $month AND DAY(x.date) > 15 AND x.interner = y.id AND isLeave = false
             GROUP BY x.interner
             ");
             return view('salary',['title' => "ค่าเบี้ยเลี้ยงนักศึกษาฝึกงาน สิ้นเดือน $month-$year", 'data' => $data]);
