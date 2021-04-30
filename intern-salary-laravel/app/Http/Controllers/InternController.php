@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use \PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 
 class InternController extends Controller
@@ -140,26 +141,28 @@ class InternController extends Controller
         return back()->withErrors(['remove' => "ลบบันทึกแล้ว"]);
     }
 
-    public function import(Request $request)
+    public function importform(Request $request)
     {
-        switch ($request->method()) {
-            case 'POST':
-                if ($request->file != null) {
-                    $path = Storage::putFile('xlsx', $request->file('file'));
-                    $fullpath = Storage::path($path);
-                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-                    $spreadsheet = $reader->load($fullpath);
-                    Storage::delete($path);
-                    $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
-                    return $sheetData;
-                } else {
-                    return back()->withError(['error' => 'กรุณาอัพโหลดไฟล์',]);
+        return view('import');
+    }
+
+    public function upload(Request $request)
+    {
+        if ($request->file != null) {
+            $path = Storage::putFile('xlsx', $request->file('file'));
+            $reader = new Xlsx();
+            $spreadsheet = $reader->load(Storage::path($path));
+            Storage::delete($path);
+            $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, false);
+            foreach ($sheetData as $r) {
+                if ($r[0] == null) {
+                    break;
                 }
-            case 'GET':
-                return view('import');
-            default:
-                // invalid request
-                return back();
+                DB::insert("INSERT INTO `work_record` (`interner`, `isLeave`, `date`, `checkin`, `checkout`) VALUES (\"$r[0]\", false, \"$r[1]\", \"$r[2]\", \"$r[3]\")");
+            }
+            return redirect()->route('dashboard')->withError(['success' => "OK"]);
+        } else {
+            return redirect()->route('import')->withError(['error' => "กรุณาอัพโหลดไฟล์"]);
         }
     }
 }

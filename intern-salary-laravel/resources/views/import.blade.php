@@ -9,6 +9,11 @@
     <strong>{{ $message }}</strong>
 </div>
 @enderror
+@error('success')
+<div class="alert alert-success" role="alert">
+    <strong>เพิ่มข้อมูลเรียบร้อย</strong>
+</div>
+@enderror
 <div class="card">
     <div class="card-header bg-info-50">
         <div class="card-title">อัพโหลดไฟล์</div>
@@ -19,7 +24,7 @@
             <div class="form-group">
                 <label class="form-label">ไฟล์</label>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" accept=".xlsx" onchange="filename()" name="file" >
+                    <input type="file" class="custom-file-input" id="customFile" accept=".xlsx" onchange="filename()" name="file">
                     <label class="custom-file-label" for="customFile" id="ll">เลือกไฟล์</label>
                 </div>
             </div>
@@ -35,7 +40,7 @@
         if ('files' in x) {
             if (x.files.length == 0) {
                 txt = "เลือกไฟล์";
-            }else {
+            } else {
                 txt = x.files[0].name;
             }
         }

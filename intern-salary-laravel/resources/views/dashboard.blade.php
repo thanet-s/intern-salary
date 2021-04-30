@@ -9,6 +9,11 @@
     <strong>เพิ่มนักศึกษาสำเร็จ!</strong>
 </div>
 @enderror
+@error('success')
+<div class="alert alert-success" role="alert">
+    <strong>เพิ่มเวลาการทำงานแล้ว!</strong>
+</div>
+@enderror
 @error('edit')
 <div class="alert alert-success" role="alert">
     <strong>{{ $message }}</strong>

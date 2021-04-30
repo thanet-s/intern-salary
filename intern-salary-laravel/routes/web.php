@@ -39,6 +39,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/remove-interner', [InternController::class, 'remove']);
     Route::get('/admin/interner/{id}', [InternController::class, 'detail']);
     Route::post('/remove-work-record', [InternController::class, 'removeWork']);
-    Route::get('/import-data', [InternController::class, 'import']);
-    Route::post('/import-data', [InternController::class, 'import']);
+    Route::get('/import-data', [InternController::class, 'importform'])->name('import');
+    Route::post('/import-data', [InternController::class, 'upload']);
 });
