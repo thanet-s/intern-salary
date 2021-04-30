@@ -40,4 +40,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/interner/{id}', [InternController::class, 'detail']);
     Route::post('/remove-work-record', [InternController::class, 'removeWork']);
     Route::get('/import-data', [InternController::class, 'import']);
+    Route::post('/import-data', [InternController::class, 'import']);
 });

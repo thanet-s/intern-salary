@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\returnSelf;
 
 class InternController extends Controller
 {
@@ -142,6 +142,25 @@ class InternController extends Controller
 
     public function import(Request $request)
     {
-        return view('import');
+        switch ($request->method()) {
+            case 'POST':
+                if ($request->file != null) {
+                    $path = Storage::putFile('xlsx', $request->file('file'));
+                    $fullpath = Storage::path($path);
+                    return $path;
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    $spreadsheet = $reader->load($fullpath);
+                    Storage::delete($path);
+                    $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+                    return $sheetData;
+                } else {
+                    return back()->withError(['error' => 'กรุณาอัพโหลดไฟล์',]);
+                }
+            case 'GET':
+                return view('import');
+            default:
+                // invalid request
+                return back();
+        }
     }
 }

@@ -4,41 +4,42 @@
 @section('subtitle', 'นำเข้าข้อมูลการทำงาน')
 
 @section('content')
-@error('email')
+@error('error')
 <div class="alert alert-danger" role="alert">
-    <strong>เกิดข้อผิดพลาด!</strong> อีเมลซ้ำ
-</div>
-@enderror
-@error('pass')
-<div class="alert alert-danger" role="alert">
-    <strong>เกิดข้อผิดพลาด!</strong> รหัสผ่านไม่ตรงกัน
+    <strong>{{ $message }}</strong>
 </div>
 @enderror
 <div class="card">
     <div class="card-header bg-info-50">
-        <div class="card-title">กรอกข้อมูล</div>
+        <div class="card-title">อัพโหลดไฟล์</div>
     </div>
     <div class="card-body">
-        <form action="/add-admin" method="POST">
+        <form action="/import-data" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label class="form-label">ชื่อ</label>
-                <input type="text" class="form-control" name="name" require>
+                <label class="form-label">ไฟล์</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" accept=".xlsx" onchange="filename()" name="file" >
+                    <label class="custom-file-label" for="customFile" id="ll">เลือกไฟล์</label>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label">อีเมล</label>
-                <input type="email" class="form-control" name="email" require>
-            </div>
-            <div class="form-group">
-                <label class="form-label">รหัสผ่าน</label>
-                <input type="password" class="form-control" name="password1" require>
-            </div>
-            <div class="form-group">
-                <label class="form-label">ยืนยันรหัสผ่าน</label>
-                <input type="password" class="form-control" name="password2" require>
-            </div>
-            <button type="submit" class="btn btn-primary waves-effect waves-themed">เพิ่ม</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-themed">อัพโหลด</button>
         </form>
     </div>
 </div>
+@endsection
+@section('tableSetting')
+<script>
+    function filename() {
+        var x = document.getElementById("customFile");
+        if ('files' in x) {
+            if (x.files.length == 0) {
+                txt = "เลือกไฟล์";
+            }else {
+                txt = x.files[0].name;
+            }
+        }
+        document.getElementById("ll").innerHTML = txt;
+    }
+</script>
 @endsection
