@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function form(Request $request)
+    {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('login');
+    }
+
     public function auth(Request $request)
     {
         $credentials = $request->only('email', 'password');

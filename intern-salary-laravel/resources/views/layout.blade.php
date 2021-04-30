@@ -11,17 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
     <!-- Call App Mode on ios devices -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="_token" content="{{ csrf_token() }}">
     <!-- Remove Tap Highlight on Windows Phone IE -->
     <meta name="msapplication-tap-highlight" content="no">
     <!-- base css -->
-    <link rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
-    <link rel="stylesheet" media="screen, print" href="css/app.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/css/vendors.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="icon" href="img/logo.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/img/logo.png" type="image/png" sizes="32x32">
     <!-- Optional: page related CSS-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/css/datagrid/datatables/datatables.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
 </head>
 
 <body class="mod-bg-1 " style="font-family: 'Sarabun', sans-serif;">
@@ -82,7 +84,7 @@
             <aside class="page-sidebar">
                 <div class="page-logo">
                     <a href="/dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative" style="justify-content: center;">
-                        <img src="img/logo.png" alt="logo" aria-roledescription="logo" height="50px" width="50px">
+                        <img src="/img/logo.png" alt="logo" aria-roledescription="logo" height="50px" width="50px">
                     </a>
                 </div>
                 <!-- BEGIN PRIMARY NAVIGATION -->
@@ -181,7 +183,7 @@
                         <!-- app user menu -->
                         <div>
                             <a href="#" data-toggle="dropdown" title="User Setting" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                <img src="img/user.png" class="bg-primary-50 profile-image rounded-circle" alt="user">
+                                <img src="/img/user.png" class="bg-primary-50 profile-image rounded-circle" alt="user">
                             </a>
                             <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                                 <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
@@ -246,14 +248,14 @@
     </div>
     <!-- END Page Wrapper -->
 
-    <script src="js/vendors.bundle.js"></script>
-    <script src="js/app.bundle.js"></script>
+    <script src="/js/vendors.bundle.js"></script>
+    <script src="/js/app.bundle.js"></script>
     <script type="text/javascript">
         /* Activate smart panels */
         $('#js-page-content').smartPanel();
     </script>
     <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    <script src="js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="/js/datagrid/datatables/datatables.bundle.js"></script>
     @yield('tableSetting')
 </body>
 

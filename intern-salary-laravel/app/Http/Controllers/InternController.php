@@ -3,28 +3,145 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use function PHPUnit\Framework\returnSelf;
 
 class InternController extends Controller
 {
     public function form(Request $request)
     {
-        return view('addStudent');
+        $departments = DB::select("select * from department");
+        return view('addStudent', ['departments' => $departments]);
+    }
+
+    public function dashboard(Request $request)
+    {
+        $interners = DB::select("
+        SELECT x.id, x.name, y.name AS department, x.under, x.institution, x.field, x.degree, x.start, x.end, x.earning, x.tel, x.pass
+        FROM interner AS x
+        INNER JOIN department AS y
+        ON x.departmentId = y.id
+        ");
+        // $dumy = [];
+        // for ($i=0;$i<500;$i++){
+        //     foreach ($interners as $j){
+        //         array_push($ff, $j);
+        //     }
+        // }
+        // return view('dashboard', ['interners' => $dumy]);
+
+        $departments = DB::select("select * from department");
+        return view('dashboard', ['interners' => $interners, 'departments' => $departments]);
     }
 
     public function add(Request $request)
     {
+        $id = $request->input('id');
         $name = $request->input('name');
-        $email = $request->input('email');
-        $pass1 = $request->input('password1');
-        $pass2 = $request->input('password2');
-        $emails = DB::select('select email from users');
+        $department = $request->input('department');
+        $under = $request->input('under');
+        $institution = $request->input('institution');
+        $field = $request->input('field');
+        $degree = $request->input('degree');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $earning = $request->input('earning');
+        $tel = $request->input('tel');
+        $ids = DB::select('select id from interner');
 
-        foreach ($emails as $em) {
-            if ($em->email == $email) {
-                return back()->withErrors(['email' => 'email does exists']);
+        foreach ($ids as $i) {
+            if ($i->id == $id) {
+                return back()->withErrors(['id' => 'id does exists']);
             }
         }
 
+        DB::insert("insert into interner values (\"$id\", \"$name\", $department, \"$under\", \"$institution\", \"$field\", \"$degree\", \"$start\", \"$end\", $earning, \"$tel\", false)");
+
         return redirect()->route('dashboard')->withErrors(['addsuccess' => 'ok',]);
+    }
+
+    public function remove(Request $request)
+    {
+        $name = $request->input('name');
+        $id = $request->input('id');
+
+        $deleted = DB::delete("delete from interner where id = \"$id\"");
+
+        return back()->withErrors(['remove' => "ลบ $name แล้ว"]);
+    }
+
+    public function edit(Request $request)
+    {
+        $oid = $request->input('oid');
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $department = $request->input('department');
+        $under = $request->input('under');
+        $institution = $request->input('institution');
+        $field = $request->input('field');
+        $degree = $request->input('degree');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $earning = $request->input('earning');
+        $tel = $request->input('tel');
+
+        DB::update("
+        update interner
+        set id = \"$id\", name = \"$name\", departmentId = $department, under = \"$under\", institution = \"$institution\", field = \"$field\", degree = \"$degree\", start = \"$start\", end = \"$end\", earning = $earning, tel = \"$tel\", pass = false
+        where id = \"$oid\"
+        ");
+
+        return redirect()->route('dashboard')->withErrors(['edit' => "แก้ไข $name แล้ว",]);
+    }
+
+    public function leave(Request $request)
+    {
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $date = $request->input('date');
+        $checkin = $request->input('checkin');
+        $checkout = $request->input('checkout');
+
+        DB::insert("insert into work_record (interner, isLeave, date, checkin, checkout) values (\"$id\", true, \"$date\", \"$checkin:00\", \"$checkout:00\")");
+
+        return redirect()->route('dashboard')->withErrors(['leave' => "เพิ่มการลาให้ $name แล้ว"]);
+    }
+
+    public function detail($id, Request $request)
+    {
+        $interners = DB::select("
+        SELECT x.id, x.name, y.name AS department, x.under, x.institution, x.field, x.degree, x.start, x.end, x.earning, x.tel, x.pass
+        FROM interner AS x
+        INNER JOIN department AS y
+        ON x.departmentId = y.id
+        WHERE x.id = \"$id\"
+        ");
+        $working = DB::select("
+        SELECT id, date, checkin, checkout, TIMEDIFF(checkout, checkin) AS time
+        FROM work_record
+        WHERE interner = \"$id\" AND isLeave = false
+        ");
+        $leave = DB::select("
+        SELECT id, date, checkin, checkout, TIMEDIFF(checkout, checkin) AS time
+        FROM work_record
+        WHERE interner = \"$id\" AND isLeave = true
+        ");
+        $user = $interners[0];
+        return view('internerDetail', ['user' => $user, 'working' => $working, 'leave' => $leave]);
+    }
+
+    public function removeWork(Request $request)
+    {
+        $id = $request->input('id');
+
+        $deleted = DB::delete("delete from work_record where id = $id");
+
+        return back()->withErrors(['remove' => "ลบบันทึกแล้ว"]);
+    }
+
+    public function import(Request $request)
+    {
+        return view('import');
     }
 }
