@@ -147,7 +147,6 @@ class InternController extends Controller
                 if ($request->file != null) {
                     $path = Storage::putFile('xlsx', $request->file('file'));
                     $fullpath = Storage::path($path);
-                    return $path;
                     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
                     $spreadsheet = $reader->load($fullpath);
                     Storage::delete($path);
