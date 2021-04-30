@@ -170,6 +170,13 @@
                                                     <label class="form-label">หมายเลขโทรศัพท์</label>
                                                     <input type="text" class="form-control" name="tel" value="{{ $i->tel }}" require>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">สถานะการฝึก</label>
+                                                    <select class="form-control" name="pass">
+                                                        <option value="0" {{ ( 0 == $i->pass) ? 'selected' : '' }}>กำลังฝึกงาน</option>
+                                                        <option value="1" {{ ( 1 == $i->pass) ? 'selected' : '' }}>ฝึกงานจบแล้ว</option>
+                                                    </select>
+                                                </div>
                                                 <button type="submit" class="btn btn-primary waves-effect waves-themed">แก้ไข</button>
                                             </form>
                                         </div>

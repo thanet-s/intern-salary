@@ -83,20 +83,20 @@
                         <thead class="bg-warning-200">
                             <tr>
                                 <th>ID</th>
-                                <th>date</th>
+                                <th>วันทีี่</th>
                                 <th>Checkin</th>
                                 <th>Checkout</th>
-                                <th>Time</th>
+                                <th>เวลาทำงาน</th>
                                 <th>Controls</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>date</th>
+                                <th>วันทีี่</th>
                                 <th>Checkin</th>
                                 <th>Checkout</th>
-                                <th>Time</th>
+                                <th>เวลาทำงาน</th>
                                 <th>Controls</th>
                             </tr>
                         </tfoot>
@@ -151,20 +151,20 @@
                         <thead class="bg-warning-200">
                             <tr>
                                 <th>ID</th>
-                                <th>date</th>
+                                <th>วันทีี่</th>
                                 <th>Checkin</th>
                                 <th>Checkout</th>
-                                <th>Time</th>
+                                <th>เวลาทำงาน</th>
                                 <th>Controls</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>date</th>
+                                <th>วันทีี่</th>
                                 <th>Checkin</th>
                                 <th>Checkout</th>
-                                <th>Time</th>
+                                <th>เวลาทำงาน</th>
                                 <th>Controls</th>
                             </tr>
                         </tfoot>
